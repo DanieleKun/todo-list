@@ -14,9 +14,11 @@ type Props = {
     task:ITask
     checkedTask:any
     deleteTask:any
+    deleteAllTasks:any
 }
 
 export const TaskItem: React.FC<Props> = ({ task, checkedTask, deleteTask }) => {
+
     return (
         <>
             <ListItem>
@@ -31,7 +33,7 @@ export const TaskItem: React.FC<Props> = ({ task, checkedTask, deleteTask }) => 
                         label="" />
                     </ListItemIcon>
                     <ListItemText primary={task.text} />
-                    <Button><DeleteIcon onClick={() => deleteTask(task.id)}/></Button>
+                    <Button color="error"><DeleteIcon onClick={() => deleteTask(task.id)}/></Button>
                 </ListItemButton>
             </ListItem>
         </>

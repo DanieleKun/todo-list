@@ -1,9 +1,11 @@
+import { FormEvent, useState } from 'react';
+//Material UI
 import { Button } from '@mui/material';
 import TextField from '@mui/material/TextField';
-import { FormEvent, useState } from 'react';
+
 
 type Props = {
-    addTask(task: string) : void
+    addTask(task: string):any
 }
 
 export const TaskInput: React.FC<Props> = ({addTask}) => {
@@ -12,7 +14,9 @@ export const TaskInput: React.FC<Props> = ({addTask}) => {
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log('aggiunto');
+
+        if(!task) return;
+
         addTask(task)
         setTask('')
     }

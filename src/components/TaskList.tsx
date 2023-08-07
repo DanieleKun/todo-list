@@ -13,28 +13,36 @@ import Box from '@mui/material/Box';
 type Props = {
     tasks: ITask[],
     checkedTask: any
-    deleteTask:any
+    deleteTask: any
+    deleteAllTasks: any
+    checkAllTasks:any
 }
 
-export const TaskList: React.FC<Props> = ({ tasks, checkedTask, deleteTask }) => {
+export const TaskList: React.FC<Props> = ({ tasks, checkedTask, deleteTask, deleteAllTasks, checkAllTasks }) => {
     return (
         <>
             <Box sx={{ flexGrow: 1 }}>
                 <Grid container spacing={2} justifyContent='center'>
                     <Grid xs={8} width='500px'>
-                        <List>
-                            {tasks.map((task) => (
-                                <TaskItem key={task.id} task={task} checkedTask={checkedTask} deleteTask={deleteTask}/>
-                            ))}
-                        </List>
-                        <Button color="success" 
+                        {
+                            tasks.length ?
+                                <List>
+                                    {tasks.map((task) => (
+                                        <TaskItem key={task.id} task={task} checkedTask={checkedTask} deleteTask={deleteTask} deleteAllTasks={deleteAllTasks} />
+                                    ))}
+                                </List>
+                                : <h2>Non hai nulla da fare</h2>
+                        }
+
+                        <Button onClick={() => checkAllTasks()} color="success"
                             startIcon={<CheckIcon />}
-                            >
+                        >
                             Tutto Fatto
                         </Button>
-                        <Button color="error" 
+                        
+                        <Button onClick={() => deleteAllTasks()} color="error"
                             startIcon={<DeleteIcon />}
-                            >
+                        >
                             Elimina tutti
                         </Button>
                     </Grid>
